@@ -10,3 +10,38 @@ $theme-colors: (
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 // Eigen code/partials
+
+// Margin Top
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+// Margin bottom
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+// Theme background colors
+.bg-primary {
+  background-color: map-get($theme-colors, "primary");
+}
+
+.bg-danger {
+  background-color: map-get($theme-colors, "danger");
+}
+
+.bg-salmon {
+  background-color: map-get($theme-colors, "salmon");
+}
+
+td {
+  color: #000;
+}

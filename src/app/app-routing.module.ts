@@ -5,9 +5,11 @@ import {DriversComponent} from './drivers/drivers.component';
 import {CalendarComponent} from './calendar/calendar.component';
 import {OverviewComponent} from './overview/overview.component';
 import {ErrorComponent} from './error/error.component';
+import {CampsComponent} from './camps/camps.component';
 
 const routes: Routes = [
   {path: 'drivers', component: DriversComponent},
+  {path: 'camps', component: CampsComponent},
   {path: 'calendar', component: CalendarComponent},
   {path: 'overview', component: OverviewComponent},
   {path: 'login', component: LoginComponent},
