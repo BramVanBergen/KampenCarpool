@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+// Overschrijf BS variabelen en mixins
+$theme-colors: (
+  'primary': #009CAB,
+  'danger': #F04C25,
+  'salmon' : salmon
+);
+
+// Link naar BS en FA
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+// Eigen code/partials
