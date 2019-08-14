@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../_services/auth.service';
+import {User} from '../_interfaces/user';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  isCollapsed = true;
-  constructor() { }
+  isCollapsed = true; // true -> zichtbaar, false -> verberg
+  user: User;
 
-  ngOnInit() {
+  constructor(public authService: AuthService) { // LET OP: injecteer public !!!!
   }
 
+  ngOnInit() {
+    this.authService.userData$.subscribe( data => this.user = data);
+
+    this.authService.getAdminList();
+  }
 }

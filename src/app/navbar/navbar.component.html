@@ -10,9 +10,6 @@
         <a class="nav-link" routerLink="/overview" routerLinkActive="active">Overview</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/calendar" routerLinkActive="active">Calendar</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" routerLink="/drivers" routerLinkActive="active">Drivers</a>
       </li>
       <li class="nav-item">
@@ -20,11 +17,15 @@
       </li>
     </ul>
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <span class="navbar-text d-md-block d-sm-none divider-right" *ngIf="user">
+        <img [src]="user.photoURL" class="avatar" alt="avatar">
+        {{ user.displayName }}
+      </span>
+      <li class="nav-item" *ngIf="!user">
         <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0)">Logout</a>
+      <li class="nav-item" *ngIf="user">
+        <a class="nav-link" routerLink="/login" (click)="authService.logout()">Logout</a>
       </li>
     </ul>
   </div>

@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {NgBootstrapModule} from './sharedModules/ng-bootstrap.module';
 import {NavbarComponent} from './navbar/navbar.component';
 import {LoginModule} from './login/login.module';
-import {CalendarModule} from './calendar/calendar.module';
 import {DriversModule} from './drivers/drivers.module';
 import {OverviewModule} from './overview/overview.module';
 import {ErrorComponent} from './error/error.component';
@@ -15,6 +14,10 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
 import {CampsModule} from './camps/camps.module';
+import {HttpClientModule} from '@angular/common/http';
+import {AddCampModule} from './add-camp/add-camp.module';
+import {AddDriverModule} from './add-driver/add-driver.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,11 +29,14 @@ import {CampsModule} from './camps/camps.module';
     BrowserModule,
     AppRoutingModule,
     NgBootstrapModule,
+    FormsModule,
     LoginModule,
-    CalendarModule,
     DriversModule,
     OverviewModule,
     CampsModule,
+    AddCampModule,
+    AddDriverModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),  // nodig voor alles
     AngularFirestoreModule.enablePersistence(),             // Cloud Firestore (met offline data persistence)
     AngularFireAuthModule,                                  // Firebase Auth

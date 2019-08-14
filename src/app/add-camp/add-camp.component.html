@@ -1,0 +1,123 @@
+<h4>Voeg een kamp toe</h4>
+<hr>
+<h5>Tak</h5>
+<form #addCampForm="ngForm" (submit)="addCamp(addCampForm.value)">
+  <input type="hidden" [(ngModel)]="camp.CampId" name="CampId" />
+  <div class="form-group">
+    <label for="Group">Tak</label>
+    <input type="text"
+           id="Group"
+           class="form-control"
+           name="Group"
+           [(ngModel)]="camp.Group">
+  </div>
+
+  <div class="form-group">
+    <label for="AmountOfLeaders">Aantal leiding</label>
+    <input type="number"
+           id="AmountOfLeaders"
+           class="form-control"
+           name="AmountOfLeaders"
+           [(ngModel)]="camp.AmountOfLeaders">
+  </div>
+
+  <div class="form-group">
+    <label for="AmountOfHelpers">Aantal foeriers</label>
+    <input type="number"
+           id="AmountOfHelpers"
+           class="form-control"
+           name="AmountOfHelpers"
+           [(ngModel)]="camp.AmountOfHelpers">
+  </div>
+
+  <div class="form-group">
+    <label for="AmountOfMembers">Aantal leden</label>
+    <input type="number"
+           id="AmountOfMembers"
+           class="form-control"
+           name="AmountOfMembers"
+           [(ngModel)]="camp.AmountOfMembers">
+  </div>
+
+  <hr/>
+  <h6>Kampplaats</h6>
+
+  <div class="form-group">
+    <label for="StreetName">Straatnaam</label>
+    <input type="text"
+           id="StreetName"
+           class="form-control"
+           name="StreetName"
+           [(ngModel)]="camp.StreetName">
+  </div>
+
+  <div class="form-group">
+    <label for="HouseNumber">Huisnummer</label>
+    <input type="text"
+           id="HouseNumber"
+           class="form-control"
+           name="HouseNumber"
+           [(ngModel)]="camp.HouseNumber">
+  </div>
+
+  <div class="form-group">
+    <label for="City">Gemeente</label>
+    <input type="text"
+           id="City"
+           class="form-control"
+           name="City"
+           [(ngModel)]="camp.City">
+  </div>
+
+  <div class="form-group">
+    <label for="PostCode">Postcode</label>
+    <input type="text"
+           id="PostCode"
+           class="form-control"
+           name="PostCode"
+           [(ngModel)]="camp.PostCode">
+  </div>
+
+  <hr/>
+  <h6>Periode</h6>
+
+  <div class="form-group">
+    <label for="StartDate">Startdatum</label>
+    <input type="date"
+           id="StartDate"
+           class="form-control"
+           name="StartDate"
+           [(ngModel)]="camp.StartDate">
+  </div>
+
+  <div class="form-group">
+    <label for="StartTime">Startuur</label>
+    <input type="time"
+           id="StartTime"
+           class="form-control"
+           name="StartTime"
+           [(ngModel)]="camp.StartTime">
+  </div>
+
+  <div class="form-group">
+    <label for="EndDate">Einddatum</label>
+    <input type="date"
+           id="EndDate"
+           class="form-control"
+           name="EndDate"
+           [(ngModel)]="camp.EndDate">
+  </div>
+
+  <div class="form-group">
+    <label for="EndTime">Einduur</label>
+    <input type="time"
+           id="EndTime"
+           class="form-control"
+           name="EndTime"
+           [(ngModel)]="camp.EndTime">
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    Submit
+  </button>
+</form>

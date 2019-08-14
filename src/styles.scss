@@ -29,6 +29,10 @@ $theme-colors: (
   margin-bottom: 20px;
 }
 
+.margin-bottom-90 {
+  margin-bottom: 90px;
+}
+
 // Theme background colors
 .bg-primary {
   background-color: map-get($theme-colors, "primary");
@@ -42,6 +46,32 @@ $theme-colors: (
   background-color: map-get($theme-colors, "salmon");
 }
 
-td {
-  color: #000;
+.btn {
+  cursor: pointer;
+}
+
+.btn-outline-secondary {
+  cursor: not-allowed;
+}
+
+.navbar-text {
+  color: white !important;
+}
+
+.avatar {
+  max-width: 30px;
+  max-height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.divider-right {
+  padding-right: 10px;
+  border-right: solid 1px rgba(255, 255, 255, 0.5);
+}
+
+.right-bottom {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
 }

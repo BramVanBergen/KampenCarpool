@@ -1,5 +1,5 @@
 <h1>Overzicht kampen</h1>
-<table class="table table-striped table-hover table-responsive">
+<table class="table table-striped table-hover table-responsive margin-bottom-90">
   <thead>
   <tr>
     <th>
@@ -15,17 +15,26 @@
       Locatie
     </th>
     <th>
-      Plaatsen tekort
+      Plaatsen tekort heen
+    </th>
+    <th>
+      Plaatsen tekort terug
+    </th>
+    <th>
+      Acties
     </th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let camp of (camps$ | async)">
-    <td>{{ camp.Tak }}</td>
-    <td>{{ camp.Startdatum.toDate().toLocaleDateString() }}</td>
-    <td>{{ camp.Einddatum.toDate().toLocaleDateString() }}</td>
-    <td>{{ camp.Straatnaam }} {{ camp.Huisnummer }}, {{ camp.Postcode }} {{ camp.Gemeente }}</td>
-    <td>{{ camp.AantalLeden + camp.AantalLeiding + camp.AantalFoeriers}}</td>
+    <td>{{ camp.Group }}</td>
+    <td>{{ camp.StartDate }} {{ camp.StartTime }}</td>
+    <td>{{ camp.EndDate }} {{ camp.EndTime }}</td>
+    <td>{{ camp.StreetName }} {{ camp.HouseNumber }}, {{ camp.PostCode }} {{ camp.City }}</td>
+    <td>{{ camp.AmountOfMembers + camp.AmountOfLeaders + camp.AmountOfHelpers}}</td>
+    <td>{{ camp.AmountOfMembers + camp.AmountOfLeaders + camp.AmountOfHelpers}}</td>
+    <td ><i class="fas fa-edit" (click)="editCamp(camp.CampId)"></i><i class="fas fa-trash-alt" (click)="checkForDrivers(camp.CampId)"></i></td>
   </tr>
   </tbody>
 </table>
+<a routerLink="/addCamp" class="btn btn-info right-bottom">Voeg een kamp toe</a>

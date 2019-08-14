@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CampsComponent} from './camps.component';
+import {AddCampComponent} from './add-camp.component';
 import {RouterModule} from '@angular/router';
-import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    NgbAlertModule
+    FormsModule,
   ],
-  declarations: [CampsComponent]
+  declarations: [AddCampComponent]
 })
-export class CampsModule { }
+export class AddCampModule { }

@@ -1,3 +1,44 @@
-<p>
-  login works!
-</p>
+<div class="row">
+  <div class="offset-md-2 col-md-8 mb-2">
+    <h4>Login</h4>
+    <div class="alert alert-dismissible fade show"
+         [ngClass]="alertBox.color"
+         *ngIf="alertBox">
+      <p [innerHTML]="alertBox.message"></p>
+      <button type="button" class="close"
+              (click)="authService.clearMessage();">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <br>
+    <form #f="ngForm">
+      <div class="form-group">
+        <input type="email" class="form-control" name="email" id="email" placeholder="Enter email"
+               required
+               pattern="\S+@\S+\.\S+"
+               #email="ngModel"
+               [(ngModel)]="loginData.email">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" name="password" id="password"
+               placeholder="Password (6+ characters)"
+               required
+               minlength="6"
+               #password="ngModel"
+               [(ngModel)]="loginData.password">
+      </div>
+      <button type="button" class="btn btn-outline-success mr-2" (click)="emailLogin(f.value, f.valid)">
+        Login
+      </button>
+      <button type="button" class="btn btn-outline-success mr-2" (click)="emailSignUp(f.value, f.valid)">
+        Sign up
+      </button>
+      <button type="button" class="btn btn-outline-danger mr-2" (click)="authService.emailResetPassword(email.value)">
+        Reset password
+      </button>
+      <button type="button" class="btn btn-outline-primary" (click)="authService.googleLogin()">
+        <i class="fab fa-google"></i> Login with Google
+      </button>
+    </form>
+  </div>
+</div>

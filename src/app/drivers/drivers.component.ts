@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {DriverService} from '../_services/driver.service';
 
 @Component({
   selector: 'app-drivers',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DriversComponent implements OnInit {
 
-  constructor() { }
+  drivers: Observable<any[]>;
 
-  ngOnInit() {
+  constructor(private driverService: DriverService) {
   }
 
+  ngOnInit() {
+    this.drivers = this.driverService.getDriversWithGroup();
+  }
+
+  deleteDriver(driverId) {
+    this.driverService.deleteDriverById(driverId);
+  }
 }

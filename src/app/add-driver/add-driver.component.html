@@ -1,0 +1,69 @@
+<h4>Voeg een chauffeur toe</h4>
+<hr>
+<form #addDriverForm="ngForm" (submit)="addDriver(addDriverForm.value)">
+  <div class="form-group">
+    <label for="FirstName">Voornaam</label>
+    <input type="text"
+           id="FirstName"
+           class="form-control"
+           name="FirstName"
+           [(ngModel)]="driver.FirstName">
+  </div>
+
+  <div class="form-group">
+    <label for="LastName">Achternaam</label>
+    <input type="text"
+           id="LastName"
+           class="form-control"
+           name="LastName"
+           [(ngModel)]="driver.LastName">
+  </div>
+
+  <div class="form-group">
+    <label for="FirstNameChild">Voornaam lid</label>
+    <input type="text"
+           id="FirstNameChild"
+           class="form-control"
+           name="FirstNameChild"
+           [(ngModel)]="driver.FirstNameChild">
+  </div>
+
+  <div class="form-group">
+    <label for="LastNameChild">Achternaam lid</label>
+    <input type="text"
+           id="LastNameChild"
+           class="form-control"
+           name="LastNameChild"
+           [(ngModel)]="driver.LastNameChild">
+  </div>
+
+  <div class="form-group">
+    <label for="FreePlacesTo">Aantal vrije plaatsen heen</label>
+    <input type="number"
+           id="FreePlacesTo"
+           class="form-control"
+           name="FreePlacesTo"
+           [(ngModel)]="driver.FreePlacesTo">
+  </div>
+
+  <div class="form-group">
+    <label for="FreePlacesBack">Aantal vrije plaatsen terug</label>
+    <input type="number"
+           id="FreePlacesBack"
+           class="form-control"
+           name="FreePlacesBack"
+           [(ngModel)]="driver.FreePlacesBack">
+  </div>
+
+  <div class="form-group">
+    <label for="Camp">Kamp</label>
+    <select id="Camp" class="form-control"
+           name="CampId"
+            [(ngModel)]="driver.CampId">
+      <option *ngFor="let camp of (camps$ | async)" [value]="camp.CampId">{{camp.Group + ' ' + camp.StartDate + ' ' + camp.EndDate}}</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">
+    Submit
+  </button>
+</form>

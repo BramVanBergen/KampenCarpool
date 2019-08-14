@@ -1,3 +1,36 @@
-<p>
-  drivers works!
-</p>
+<h1>Overzicht chauffeurs</h1>
+<table class="table table-striped table-hover table-responsive margin-bottom-90">
+  <thead>
+  <tr>
+    <th>
+      Naam chauffeur
+    </th>
+    <th>
+      Naam kind
+    </th>
+    <th>
+      Tak
+    </th>
+    <th>
+      Plaatsen Heen
+    </th>
+    <th>
+      Plaatsen Terug
+    </th>
+    <th>
+      Acties
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let driver of (drivers | async)">
+    <td>{{ driver.FirstName }} {{ driver.LastName }}</td>
+    <td>{{ driver.FirstNameChild }} {{ driver.LastNameChild }}</td>
+    <td>{{ driver.GroupName }}</td>
+    <td>{{ driver.FreePlacesTo }}</td>
+    <td>{{ driver.FreePlacesBack }}</td>
+    <td (click)="deleteDriver(driver.driverId)"><i class="fas fa-trash-alt"></i></td>
+  </tr>
+  </tbody>
+</table>
+<a routerLink="/addDriver" class="btn btn-info right-bottom">Voeg een bestuurder toe</a>

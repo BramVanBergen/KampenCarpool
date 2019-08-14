@@ -1,60 +1,82 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import {Camp} from '../_interfaces/camp';
 import {Observable} from 'rxjs';
 import {User} from '../_interfaces/user';
+import {Router} from '@angular/router';
+import {AuthService} from './auth.service';
+import {DriverService} from './driver.service';
+import {Driver} from '../_interfaces/driver';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CampService {
 
-  private collection = 'Scoutsjaar';
+  private collection = 'Camps';
 
   user: User;
-  camps$: Observable<Camp[]>;
+  camps$: Observable<any[]>;
+  camp: any;
+  data$: Observable<any>;
+  counter: number;
+  counter2: number;
+  id: string;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private campService: CampService, private router: Router, private authService: AuthService) {
     this.camps$ = this.afs.collection<Camp>(this.collection).valueChanges();
-    // console.log(this.afs.doc('Scoutsjaar/aKZSpV59gxyazPHaDe0x').valueChanges());
+    this.authService.userData$.subscribe(data => this.user = data);
   }
 
   getCamps() {
     return this.camps$;
   }
 
+  getCamp(campId) {
+    this.data$ = this.afs.collection(this.collection, ref => ref.where('CampId', '==', campId)).valueChanges();
+
+    return this.data$;
+  }
+
   addCamp(camp) {
-    const key = this.afs.createId();
+    let key = camp.CampId;
+    if (key === '' || key === undefined) {
+      key = this.afs.createId();
+    }
     const document = this.collection + '/' + key;
     this.afs.doc(document).set({
-      tak: camp.tak,
-      aantalLeden: camp.aantalLeden,
-      aantalLeiding: camp.aantalLeiding,
-      aantalFoeriers: camp.aantalFoeriers,
-      startDatum: camp.startDatum,
-      eindDatum: camp.eindDatum,
-      straatNaam: camp.straatNaam,
-      huisnummer: camp.huisnummer,
-      postcode: camp.postcode,
-      gemeente: camp.gemeente
+      Group: camp.Group,
+      AmountOfMembers: camp.AmountOfMembers,
+      AmountOfLeaders: camp.AmountOfLeaders,
+      AmountOfHelpers: camp.AmountOfHelpers,
+      StartDate: camp.StartDate,
+      StartTime: camp.StartTime,
+      EndDate: camp.EndDate,
+      EndTime: camp.EndTime,
+      StreetName: camp.StreetName,
+      HouseNumber: camp.HouseNumber,
+      PostCode: camp.PostCode,
+      City: camp.City,
+      CampId: key,
+      userId: this.user.uid
     }).catch(
       error => console.error('Error writing document: ', error)
     );
   }
 
-  deleteCamp(id) {
-    var campSubscription = this.afs.collection<any>(this.collection, ref => ref.where('campId', '==', id)).valueChanges().subscribe(campCollection => {
-      campCollection.forEach(camp => {
-        if (this.user.uid == camp.userId) {
-          const path = this.collection + '/' + camp.key;
-          this.afs.doc(path).delete().catch(
-            error => console.error('Error deleting camp: ', error)
-          );
+  deleteCamp(campId: string) {
+    this.afs.collection<Camp>(this.collection, ref => ref.where('CampId', '==', campId)).valueChanges().subscribe(camps => {
+      camps.forEach(camp => {
+        if (this.user.uid === camp.userId || this.user.role === 'Admin') {
+          this.afs.doc(this.collection + '/' + camp.CampId).delete().catch(error => console.error('Error deleting camp: ', error));
+        } else {
+          console.log('Verkeerde gebruiker');
         }
       });
     });
-    campSubscription.unsubscribe();
+
+    this.getCamps();
   }
 }
